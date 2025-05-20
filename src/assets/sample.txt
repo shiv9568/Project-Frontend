@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# MySQL credentials
+MYSQL_USER="cleanup_user"
+MYSQL_PASS="yourpassword"   # Replace this with your actual password
+MYSQL_DB="cleanup_tool"
+
+LOGTIME=$(date '+%Y-%m-%d %H:%M:%S')
+
+# Get user input via Zenity
+CHOICE=$(zenity --list --checklist --title="Disk Cleanup" \
+    --text="Select items to clean:" \
+    --column="Select" --column="Task" \
+    TRUE "Clear apt cache" \
+    TRUE "Clear browser cache" \
+    TRUE "Clear /tmp files" \
+    TRUE "Clear application cache")
+
+if [[ -z "$CHOICE" ]]; then
+    zenity --error --text="No option selected. Exiting."
+    exit 1
+fi
+
+# Preview
+PREVIEW=""
+function add_to_preview {
+    local desc=$1
+    local path=$2
+    if [ -d "$path" ]; then
+        local size=$(du -sh "$path" 2>/dev/null | cut -f1)
+        PREVIEW+="\n$desc ($path) — $size"
+    fi
+}
+
+[[ "$CHOICE" == "Clear apt cache" ]] && add_to_preview "APT Cache" "/var/cache/apt/archives"
+[[ "$CHOICE" == "Clear browser cache" ]] && add_to_preview "Browser Cache" "$HOME/.cache/mozilla"
+[[ "$CHOICE" == "Clear /tmp files" ]] && add_to_preview "Temporary Files" "/tmp"
+[[ "$CHOICE" == "Clear application cache" ]] && add_to_preview "Application Cache" "$HOME/.cache"
+
+zenity --info --width=400 --height=300 --text="Preview of files to be deleted:$PREVIEW"

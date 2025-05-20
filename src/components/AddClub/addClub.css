@@ -1,0 +1,17 @@
+.ql-toolbar {
+    font-size: 12px;  /* Adjust toolbar font size */
+    padding: 2px;  /* Reduce padding for the toolbar */
+}
+
+.ql-toolbar button {
+    font-size: 12px;  /* Smaller font size for toolbar buttons */
+    padding: 2px 2px;  /* Smaller padding */
+}
+
+.ql-editor {
+    font-size: 10px;  /* Adjust text size in the editor area */
+}
+
+.ql-picker {
+    font-size: 12px;  /* Adjust size of the dropdown (e.g., font size picker) */
+}

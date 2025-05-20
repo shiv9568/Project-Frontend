@@ -1,0 +1,5 @@
+
+.hello{
+    background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(251,251,255,1) 0%, rgba(204,204,220,1) 0%, rgba(232,234,236,1) 0%, rgba(119,194,227,1) 89%);
+}
