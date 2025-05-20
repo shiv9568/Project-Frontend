@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url = 'project-backend-10eyrx1h1-shiv9568s-projects.vercel.app';
+const url = 'project-backend-liard.vercel.app';
 
 export const LoginUser = async (data) => {
     try {
