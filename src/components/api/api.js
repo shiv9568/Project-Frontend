@@ -5,6 +5,7 @@ export const LoginUser = async (data) => {
     try {
         const response = await axios.post(`${url}/user/login`, data, {
             timeout: 6000,
+            credentials: 'include',
             headers: {     
                 'Content-Type': 'application/json',
                 uniid: localStorage.getItem("code")
